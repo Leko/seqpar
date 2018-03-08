@@ -9,6 +9,7 @@
   "scripts": {
     "prepare": "npm run build",
     "lint": "eslint --cache .",
+    "flow": "flow --show-all-errors",
     "build": "babel src --out-dir dist",
     "test": "mocha"
   },
@@ -56,6 +57,7 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "eslint-plugin-standard": "^3.0.1",
+    "flow-bin": "^0.67.1"
   }
 }
