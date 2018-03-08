@@ -1,0 +1,29 @@
+{
+  "name": "seqpar",
+  "version": "0.1.0",
+  "description": "seqpar is a batch executor run in sequential & parallel",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Leko/seqpar.git"
+  },
+  "keywords": [
+    "executable",
+    "batch",
+    "exec",
+    "sequential",
+    "parallel",
+    "file",
+    "js",
+    "node"
+  ],
+  "author": "Leko <leko.noor@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Leko/seqpar/issues"
+  },
+  "homepage": "https://github.com/Leko/seqpar#readme"
+}
