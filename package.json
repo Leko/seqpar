@@ -7,6 +7,8 @@
     "seqpar": "dist/cli.js"
   },
   "scripts": {
+    "prepare": "npm run build",
+    "build": "babel src --out-dir dist",
     "test": "mocha"
   },
   "repository": {
@@ -28,7 +30,7 @@
   "bugs": {
     "url": "https://github.com/Leko/seqpar/issues"
   },
-  "homepage": "https://github.com/Leko/seqpar#readme",
+  "homepage": "https://github.com/Leko/seqpar",
   "dependencies": {
     "figures": "^2.0.0",
     "inquirer": "^5.1.0",
@@ -38,5 +40,14 @@
   "yargs": {
     "parse-numbers": true,
     "boolean-negation": true
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/node": "^7.0.0-beta.40",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "@babel/preset-flow": "^7.0.0-beta.40",
+    "babel-eslint": "^8.2.2"
   }
 }
