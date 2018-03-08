@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "seqpar is a batch executor run in sequential & parallel",
   "main": "index.js",
+  "bin": {
+    "seqpar": "dist/cli.js"
+  },
   "scripts": {
     "test": "mocha"
   },
@@ -25,5 +28,15 @@
   "bugs": {
     "url": "https://github.com/Leko/seqpar/issues"
   },
-  "homepage": "https://github.com/Leko/seqpar#readme"
+  "homepage": "https://github.com/Leko/seqpar#readme",
+  "dependencies": {
+    "figures": "^2.0.0",
+    "inquirer": "^5.1.0",
+    "ora": "^2.0.0",
+    "yargs": "^11.0.0"
+  },
+  "yargs": {
+    "parse-numbers": true,
+    "boolean-negation": true
+  }
 }
