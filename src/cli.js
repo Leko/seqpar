@@ -1,12 +1,16 @@
-const os = require('os')
-const path = require('path')
-const yargs = require('yargs')
-const pkg = require('../package.json')
+// @flow
+import os from 'os'
+import path from 'path'
+import yargs from 'yargs'
+import pkg from '../package.json'
+import Config, { type ConfigProps } from './Config'
+import Runner from './Runner'
 
 const numCPUs = os.cpus().length
+// $FlowFixMe
 const shell = path.basename(process.env.SHELL)
 
-const args = yargs
+const cliOption: ConfigProps = yargs
   .version(pkg.version)
   .usage(`${pkg.name} [DIRECTORY]`)
   .example(`${pkg.name} scripts --recursive`)
@@ -14,6 +18,7 @@ const args = yargs
   .example(`${pkg.name} scripts --glob='**/*.js'`)
   .example(`${pkg.name} scripts --no-color`)
   .example(`${pkg.name} scripts --runtimes=':sh,coffee:coffee,ts:ts-node'`)
+  .epilogue(`For more information, find our manual at ${pkg.homepage}`)
   .option('p', {
     alias: 'concurrency',
     describe: 'Specify the maximum number of concurrency',
@@ -45,13 +50,32 @@ const args = yargs
   .option('reporters', {
     describe: 'Specify the reporter to use',
     default: 'plain',
-    array: true,
   })
   .option('runtimes', {
     describe: 'Use the given runtime(s) to execute files',
     default: `:${shell},${shell}:${shell},js:node`,
-    array: true,
+    coerce: (runtimes: string) => {
+      return runtimes.split(',')
+        .map(runtime => runtime.split(':'))
+        .reduce((acc, [ext, bin]) => ({ ...acc, [ext]: bin }), {})
+    },
   })
   .argv
 
-console.log(args)
+const main = async (config: Config, target: string) => {
+  const targetAbs = path.join(process.cwd(), target)
+  const runner = new Runner(config)
+  await runner.run(targetAbs)
+}
+
+if (cliOption._.length !== 1) {
+  console.error('DIRECTORY must be required')
+  process.exit(1)
+}
+
+const config = new Config(cliOption)
+main(config, cliOption._[0])
+  .catch(e => {
+    console.error(config.chalk.red(e.stack))
+    process.exit(1)
+  })
