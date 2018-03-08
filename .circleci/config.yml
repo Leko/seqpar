@@ -24,8 +24,8 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm lint
-      - run: npm flow
+      - run: npm run lint
+      - run: npm run flow
       - run: npm test
 
   node-v4:
