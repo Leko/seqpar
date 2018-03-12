@@ -1,11 +1,18 @@
 {
   "name": "seqpar",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "seqpar is a batch executor run in sequential & parallel",
   "main": "index.js",
   "bin": {
     "seqpar": "dist/cli.js"
   },
+  "files": [
+    "package.json",
+    "package-lock.json",
+    "README.md",
+    "LICENSE",
+    "dist"
+  ],
   "scripts": {
     "prepare": "npm run build",
     "lint": "eslint --cache .",
