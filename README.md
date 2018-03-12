@@ -1,4 +1,8 @@
 # seqpar
+[![npm](https://img.shields.io/npm/v/seqpar.svg)](https://www.npmjs.com/package/seqpar)
+[![GitHub license](https://img.shields.io/github/license/Leko/seqpar.svg)](https://github.com/Leko/seqpar/blob/master/LICENSE)
+[![CircleCI](https://circleci.com/gh/Leko/seqpar/tree/master.svg?style=svg)](https://circleci.com/gh/Leko/seqpar/tree/master)
+
 seqpar is a batch executor run in sequential &amp; parallel.  
 It's easy to create efficient build process.
 
