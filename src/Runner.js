@@ -17,7 +17,7 @@ export default class Runner {
     this.config = config
   }
 
-  async run (scenario: Scenario): Promise<boolean> {
+  async run (scenario: Scenario): Promise<void> {
     const reporters = this.config.reporters.map(type => {
       const Reporter = getReporter(type)
       return new Reporter(this.config)
@@ -30,21 +30,29 @@ export default class Runner {
 
     let step: Step
     const processes: Processes = []
-    pool.on('progress', (worker: Worker, message: ProgressMessage, index: number) => {
-      bar.get(index).display(step, message)
-    })
-    pool.on('executed', (worker: Worker, message: ExecutedMessage, index: number) => {
-      processes.push({ step, info: message })
-    })
+    try {
+      pool.on('progress', (worker: Worker, message: ProgressMessage, index: number) => {
+        bar.get(index).display(step, message)
+      })
+      pool.on('executed', (worker: Worker, message: ExecutedMessage, index: number) => {
+        if (this.config.bail && message.exitCode !== 0) {
+          throw new Error(require('fs').readFileSync(message.stderrLog))
+        }
+        processes.push({ step, info: message })
+      })
 
-    for (step of scenario.steps) {
-      await this.runStep(pool, step)
+      for (step of scenario.steps) {
+        await this.runStep(pool, step)
+      }
+      await bar.clear()
+    } catch (error) {
+      await bar.clear()
+      console.error(error)
+    } finally {
+      await Promise.all(reporters.map(r => r.finalize(processes)))
+
+      await pool.disconnect()
     }
-    await bar.clear()
-    await Promise.all(reporters.map(r => r.finalize(processes)))
-
-    await pool.disconnect()
-    return true
   }
 
   async runStep (pool: WorkerPool, step: Step): Promise<boolean> {
