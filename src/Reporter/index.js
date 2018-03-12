@@ -11,4 +11,4 @@ export type ReporterType = $Keys<typeof reporters>
 
 const get = (type: ReporterType): Reportable => reporters[type]
 
-export default 
+export default get

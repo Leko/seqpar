@@ -1,6 +1,4 @@
 // @flow
-import Bar from 'ascii-progress'
-import type { ProgressMessage } from './Message'
 import ProgressBar from './ProgressBar'
 
 export default class ProgressBarManager {

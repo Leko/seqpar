@@ -4,12 +4,8 @@ import cluster from 'cluster'
 import type Config from './Config'
 import Worker from './Worker'
 import {
-  IDLE,
-  ERROR,
   type Message, PROGRESS,
 } from './Message'
-
-type Queue = Array<(cluster$Worker) => any>
 
 export default class WorkerPool extends EventEmitter {
   config: Config

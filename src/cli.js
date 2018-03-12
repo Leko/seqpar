@@ -6,7 +6,6 @@ import pkg from '../package.json'
 import Config, { type ConfigProps } from './Config'
 import Runner from './Runner'
 import Scenario from './Scenario'
-import WorkerPool from './WorkerPool'
 
 type CLIOption = ConfigProps & {
   _: Array<string>,
