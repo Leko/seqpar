@@ -33,8 +33,4 @@ export default class Config {
     const executable = this.runtimes[ext] || this.runtimes['']
     return new Runtime(executable)
   }
-
-  get chalk () {
-    return new chalk.constructor({ enabled: this.colors })
-  }
 }

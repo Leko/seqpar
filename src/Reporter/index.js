@@ -9,6 +9,6 @@ const reporters = {
 
 export type ReporterType = $Keys<typeof reporters>
 
-const get = (type: ReporterType): Reportable => reporters[type]
+const get = (type: ReporterType): $Values<typeof reporters> => reporters[type]
 
 export default get
