@@ -1,6 +1,6 @@
 {
   "name": "seqpar",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "seqpar is a batch executor run in sequential & parallel",
   "main": "index.js",
   "bin": {
