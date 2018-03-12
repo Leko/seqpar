@@ -2,6 +2,8 @@
 seqpar is a batch executor run in sequential &amp; parallel.  
 It's easy to create efficient build process.
 
+![seqpar_beautify](https://user-images.githubusercontent.com/1424963/37290004-8183a70e-264e-11e8-9a00-e723715a6e60.gif)
+
 ## Install
 ```
 npm i -g seqpar
@@ -45,13 +47,21 @@ Options:
   --version          Show version number                               [boolean]
   -p, --concurrency  Specify the maximum number of concurrency
                                                            [number] [default: 4]
-  -g, --glob         Only execute files that match glob
   -b, --bail         Bail after first test failure     [boolean] [default: true]
   -c, --colors       Force enabling of colors          [boolean] [default: true]
   -r, --recursive    Include sub directories          [boolean] [default: false]
-  --reporters        Specify the reporter to use      [array] [default: "plain"]
+  --reporters        Specify the reporter to use              [default: "plain"]
   --runtimes         Use the given runtime(s) to execute files
-                                    [array] [default: ":bash,bash:bash,js:node"]
+                                            [default: ":bash,bash:bash,js:node"]
+
+Examples:
+  seqpar scripts/**/*.js
+  seqpar scripts --recursive
+  seqpar scripts --concurrency=2
+  seqpar scripts --no-color
+  seqpar scripts --runtimes=':sh,coffee:coffee,ts:ts-node'
+
+For more information, find our manual at https://github.com/Leko/seqpar
 ```
 
 ## Contribution
