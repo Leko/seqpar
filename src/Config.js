@@ -1,35 +1,37 @@
 // @flow
 import chalk from 'chalk'
 import type { ReporterType } from './Reporter'
-import type { RuntimeProps } from './Runtime'
+import Runtime, { type RuntimeProps } from './Runtime'
 
-type ConfigProps = {
+export type ConfigProps = {
   concurrency: number,
-  glob: string,
   bail: boolean,
   colors: boolean,
   recursive: boolean,
   reporters: Array<ReporterType>,
-  runtimes: Array<RuntimeProps>,
+  runtimes: { [ext: string]: RuntimeProps },
 }
 
 export default class Config {
   concurrency: number
-  glob: string
   bail: boolean
   colors: boolean
   recursive: boolean
   reporters: Array<ReporterType>
-  runtimes: Array<RuntimeProps>
+  runtimes: { [ext: string]: RuntimeProps }
 
   constructor (props: ConfigProps) {
     this.concurrency = props.concurrency
-    this.glob = props.glob
     this.bail = props.bail
     this.colors = props.colors
     this.recursive = props.recursive
     this.reporters = props.reporters
     this.runtimes = props.runtimes
+  }
+
+  getRuntime (ext: string): Runtime {
+    const executable = this.runtimes[ext] || this.runtimes['']
+    return new Runtime(executable)
   }
 
   get chalk () {

@@ -34,9 +34,14 @@
   },
   "homepage": "https://github.com/Leko/seqpar",
   "dependencies": {
+    "ascii-progress": "^1.0.5",
+    "cli-truncate": "^1.1.0",
     "figures": "^2.0.0",
+    "glob": "^7.1.2",
     "inquirer": "^5.1.0",
+    "lodash": "^4.17.5",
     "ora": "^2.0.0",
+    "string-width": "^2.1.1",
     "yargs": "^11.0.0"
   },
   "yargs": {

@@ -5,17 +5,23 @@ import yargs from 'yargs'
 import pkg from '../package.json'
 import Config, { type ConfigProps } from './Config'
 import Runner from './Runner'
+import Scenario from './Scenario'
+import WorkerPool from './WorkerPool'
+
+type CLIOption = ConfigProps & {
+  _: Array<string>,
+}
 
 const numCPUs = os.cpus().length
 // $FlowFixMe
 const shell = path.basename(process.env.SHELL)
 
-const cliOption: ConfigProps = yargs
+const cliOption: CLIOption = yargs
   .version(pkg.version)
   .usage(`${pkg.name} [DIRECTORY]`)
+  .example(`${pkg.name} scripts/**/*.js`)
   .example(`${pkg.name} scripts --recursive`)
   .example(`${pkg.name} scripts --concurrency=2`)
-  .example(`${pkg.name} scripts --glob='**/*.js'`)
   .example(`${pkg.name} scripts --no-color`)
   .example(`${pkg.name} scripts --runtimes=':sh,coffee:coffee,ts:ts-node'`)
   .epilogue(`For more information, find our manual at ${pkg.homepage}`)
@@ -24,10 +30,6 @@ const cliOption: ConfigProps = yargs
     describe: 'Specify the maximum number of concurrency',
     number: true,
     default: numCPUs,
-  })
-  .option('g', {
-    alias: 'glob',
-    describe: 'Only execute files that match glob',
   })
   .option('b', {
     alias: 'bail',
@@ -64,8 +66,9 @@ const cliOption: ConfigProps = yargs
 
 const main = async (config: Config, target: string) => {
   const targetAbs = path.join(process.cwd(), target)
+  const scenario = await Scenario.create(targetAbs, config)
   const runner = new Runner(config)
-  await runner.run(targetAbs)
+  await runner.run(scenario)
 }
 
 if (cliOption._.length !== 1) {
@@ -76,6 +79,6 @@ if (cliOption._.length !== 1) {
 const config = new Config(cliOption)
 main(config, cliOption._[0])
   .catch(e => {
-    console.error(config.chalk.red(e.stack))
+    console.error(e.stack)
     process.exit(1)
   })
