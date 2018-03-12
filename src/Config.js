@@ -1,5 +1,4 @@
 // @flow
-import chalk from 'chalk'
 import type { ReporterType } from './Reporter'
 import Runtime, { type RuntimeProps } from './Runtime'
 
