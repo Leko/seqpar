@@ -39,5 +39,6 @@ export default class ProgressBar {
 
   async clear (): Promise<void> {
     this.bar.clear()
+    this.bar.terminate()
   }
 }

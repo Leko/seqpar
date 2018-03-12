@@ -1,5 +1,6 @@
 // @flow
 import cluster from 'cluster'
+import fs from 'fs'
 import path from 'path'
 import { spawn } from 'child_process'
 import {
@@ -13,25 +14,37 @@ import {
   type Message, IDLE,
 } from './Message'
 import Config from './Config'
-
-type ProcessInformation = {
-  exitCode: number,
-  signal: string,
-}
+import { escapePath, type ProcessInformation } from './Reporter'
 
 let config: Config
+
+const relative = (file) => path.relative(process.cwd(), file)
 
 const send = async (message: Message): Promise<void> => {
   // $FlowFixMe
   process.send(message)
 }
 
-const run = async (config: Config, path: string): Promise<ProcessInformation> => {
+const run = async (config: Config, file: string): Promise<ProcessInformation> => {
   return new Promise((resolve, reject) => {
     const runtime = 'sh'
-    const cp = spawn(runtime, [path])
+    const startsAt = new Date()
+    const stdoutLog = path.join(config.tempDir, `${escapePath(file)}_stdout`)
+    const stderrLog = path.join(config.tempDir, `${escapePath(file)}_stderr`)
+    const cp = spawn(runtime, [file])
+    const pid = cp.pid
+    cp.stdout.pipe(fs.createWriteStream(stdoutLog))
+    cp.stderr.pipe(fs.createWriteStream(stderrLog))
 
-    cp.on('close', (exitCode: number, signal: string) => resolve({ exitCode, signal }))
+    cp.on('close', (exitCode: number, signal: string) => resolve({
+      path: relative(file),
+      exitCode,
+      signal,
+      pid,
+      spentTime: new Date() - startsAt,
+      stdoutLog,
+      stderrLog,
+    }))
     cp.on('error', reject)
     cp.on('disconnect', (...args) => console.error('disconnect', ...args))
   })
@@ -61,13 +74,13 @@ process.on('message', async (message: Message) => {
         const tid = setInterval(async () => {
           await send(progress({
             workerId: cluster.worker.id,
-            log: `EXECUTING ${path.relative(process.cwd(), executeFile)}`,
+            log: `EXECUTING ${relative(executeFile)}`,
             spent: new Date() - start,
           }))
         }, 200)
-        const { exitCode, signal } = await run(config, executeFile)
+        const result = await run(config, executeFile)
         clearInterval(tid)
-        await send(executed({ exitCode, signal }))
+        await send(executed(result))
         await toIdle()
         return
       }

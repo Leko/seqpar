@@ -4,6 +4,7 @@ import cluster from 'cluster'
 import type Config from './Config'
 import Worker from './Worker'
 import {
+  EXECUTE_SUCCEESS,
   type Message, PROGRESS,
 } from './Message'
 
@@ -30,6 +31,8 @@ export default class WorkerPool extends EventEmitter {
     switch (message.type) {
       case PROGRESS:
         return this.emit('progress', worker, message, index)
+      case EXECUTE_SUCCEESS:
+        return this.emit('executed', worker, message, index)
     }
   }
 

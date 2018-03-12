@@ -1,5 +1,6 @@
 // @flow
 import type Config from './Config'
+import type { ProcessInformation } from './Reporter'
 
 // https://qiita.com/mizchi/items/0e2db7c56541c46a7785
 // eslint-disable-next-line no-unused-vars
@@ -31,10 +32,15 @@ export const execute = (path: string) => ({
   type: EXECUTE,
   path,
 })
-export const executed = ({ exitCode, signal }: { exitCode: number, signal: string }) => ({
+export const executed = ({ path, exitCode, signal, pid, spentTime, stdoutLog, stderrLog }: ProcessInformation) => ({
   type: EXECUTE_SUCCEESS,
+  path,
   exitCode,
   signal,
+  pid,
+  spentTime,
+  stdoutLog,
+  stderrLog,
 })
 export const configure = (config: Config) => ({
   type: CONFIGURE,

@@ -9,6 +9,7 @@ export type ConfigProps = {
   recursive: boolean,
   reporters: Array<ReporterType>,
   runtimes: { [ext: string]: RuntimeProps },
+  tempDir: string,
 }
 
 export default class Config {
@@ -18,6 +19,7 @@ export default class Config {
   recursive: boolean
   reporters: Array<ReporterType>
   runtimes: { [ext: string]: RuntimeProps }
+  tempDir: string
 
   constructor (props: ConfigProps) {
     this.concurrency = props.concurrency
@@ -26,6 +28,7 @@ export default class Config {
     this.recursive = props.recursive
     this.reporters = props.reporters
     this.runtimes = props.runtimes
+    this.tempDir = props.tempDir
   }
 
   getRuntime (ext: string): Runtime {

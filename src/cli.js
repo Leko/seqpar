@@ -1,6 +1,7 @@
 // @flow
 import os from 'os'
 import path from 'path'
+import fs from 'fs'
 import yargs from 'yargs'
 import pkg from '../package.json'
 import Config, { type ConfigProps } from './Config'
@@ -50,7 +51,7 @@ const cliOption: CLIOption = yargs
   })
   .option('reporters', {
     describe: 'Specify the reporter to use',
-    default: 'plain',
+    default: ['file'],
   })
   .option('runtimes', {
     describe: 'Use the given runtime(s) to execute files',
@@ -75,7 +76,11 @@ if (cliOption._.length !== 1) {
   process.exit(1)
 }
 
-const config = new Config(cliOption)
+const options = ({
+  ...cliOption,
+  tempDir: fs.mkdtempSync(path.join(os.tmpdir(), 'seqpar-'))
+}: ConfigProps)
+const config = new Config(options)
 main(config, cliOption._[0])
   .catch(e => {
     console.error(e.stack)
