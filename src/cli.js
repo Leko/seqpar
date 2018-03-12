@@ -19,7 +19,7 @@ const shell = path.basename(process.env.SHELL)
 const cliOption: CLIOption = yargs
   .version(pkg.version)
   .usage(`${pkg.name} [DIRECTORY]`)
-  .example(`${pkg.name} scripts/**/*.js`)
+  .example(`${pkg.name} 'scripts/**/*.js'`)
   .example(`${pkg.name} scripts --recursive`)
   .example(`${pkg.name} scripts --concurrency=2`)
   .example(`${pkg.name} scripts --no-color`)
