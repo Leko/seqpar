@@ -59,7 +59,7 @@ Options:
                                             [default: ":bash,bash:bash,js:node"]
 
 Examples:
-  seqpar scripts/**/*.js
+  seqpar 'scripts/**/*.js'
   seqpar scripts --recursive
   seqpar scripts --concurrency=2
   seqpar scripts --no-color
