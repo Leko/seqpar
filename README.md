@@ -52,18 +52,18 @@ Options:
   -p, --concurrency  Specify the maximum number of concurrency
                                                            [number] [default: 4]
   -b, --bail         Bail after first test failure     [boolean] [default: true]
-  -c, --colors       Force enabling of colors          [boolean] [default: true]
   -r, --recursive    Include sub directories          [boolean] [default: false]
-  --reporters        Specify the reporter to use              [default: "plain"]
+  --reporters        Specify the reporter to use             [default: ["file"]]
   --runtimes         Use the given runtime(s) to execute files
                                             [default: ":bash,bash:bash,js:node"]
 
 Examples:
-  seqpar 'scripts/**/*.js'
-  seqpar scripts --recursive
-  seqpar scripts --concurrency=2
-  seqpar scripts --no-color
-  seqpar scripts --runtimes=':sh,coffee:coffee,ts:ts-node'
+  seqpar 'scripts/**/*.js'                  Using glob pattern
+  seqpar --recursive scripts                Using recursive flag
+  seqpar --no-bail 'scripts/**/*.js'        Run all process even if one or more
+                                            process returns not-zero status
+  seqpar --concurrency=2 scripts            Specify concurrency
+  seqpar --runtimes=':sh,coffee:coffee,ts:ts-node' scripts
 
 For more information, find our manual at https://github.com/Leko/seqpar
 ```

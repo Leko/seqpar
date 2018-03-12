@@ -19,11 +19,11 @@ const shell = path.basename(process.env.SHELL)
 const cliOption: CLIOption = yargs
   .version(pkg.version)
   .usage(`${pkg.name} [DIRECTORY]`)
-  .example(`${pkg.name} 'scripts/**/*.js'`)
-  .example(`${pkg.name} scripts --recursive`)
-  .example(`${pkg.name} scripts --concurrency=2`)
-  .example(`${pkg.name} scripts --no-color`)
-  .example(`${pkg.name} scripts --runtimes=':sh,coffee:coffee,ts:ts-node'`)
+  .example(`${pkg.name} 'scripts/**/*.js'`, 'Using glob pattern')
+  .example(`${pkg.name} --recursive scripts`, 'Using recursive flag')
+  .example(`${pkg.name} --no-bail 'scripts/**/*.js'`, 'Run all process even if one or more process returns not-zero status')
+  .example(`${pkg.name} --concurrency=2 scripts`, 'Specify concurrency')
+  .example(`${pkg.name} --runtimes=':sh,coffee:coffee,ts:ts-node' scripts`)
   .epilogue(`For more information, find our manual at ${pkg.homepage}`)
   .option('p', {
     alias: 'concurrency',
@@ -34,12 +34,6 @@ const cliOption: CLIOption = yargs
   .option('b', {
     alias: 'bail',
     describe: 'Bail after first test failure',
-    boolean: true,
-    default: true,
-  })
-  .option('c', {
-    alias: 'colors',
-    describe: 'Force enabling of colors',
     boolean: true,
     default: true,
   })
