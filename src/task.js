@@ -27,11 +27,12 @@ const send = async (message: Message): Promise<void> => {
 
 const run = async (config: Config, file: string): Promise<ProcessInformation> => {
   return new Promise((resolve, reject) => {
-    const runtime = 'sh'
+    const ext = path.extname(file).replace(/^\./, '')
+    const runtime = config.getRuntime(ext)
     const startsAt = new Date()
     const stdoutLog = path.join(config.tempDir, `${escapePath(file)}_stdout`)
     const stderrLog = path.join(config.tempDir, `${escapePath(file)}_stderr`)
-    const cp = spawn(runtime, [file])
+    const cp = spawn(runtime.executable, [file])
     const pid = cp.pid
     cp.stdout.pipe(fs.createWriteStream(stdoutLog))
     cp.stderr.pipe(fs.createWriteStream(stderrLog))
