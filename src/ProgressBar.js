@@ -9,10 +9,8 @@ import Step from './Step'
 export default class ProgressBar {
   config: Config
   bar: Bar
-  tid: ?TimeoutID
 
   constructor (config: Config) {
-    this.tid = null
     this.config = config
     this.bar = new Bar({
       schema: ':groupid:message:spacer:spent',
