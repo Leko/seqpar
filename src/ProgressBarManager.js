@@ -21,7 +21,6 @@ export default class ProgressBarManager {
       await bar.clear()
     }
     for (let bar of this.bars) {
-      // https://github.com/TooTallNate/ansi.js/
       bar.bar.cursor.reset()
     }
     process.stdout.removeAllListeners('before:newlines')

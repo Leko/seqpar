@@ -3,15 +3,12 @@ import width from 'string-width'
 import truncate from 'cli-truncate'
 import Bar from 'ascii-progress'
 import type { ProgressMessage } from './Message'
-import Config from './Config'
 import Step from './Step'
 
 export default class ProgressBar {
-  config: Config
   bar: Bar
 
-  constructor (config: Config) {
-    this.config = config
+  constructor () {
     this.bar = new Bar({
       schema: ':groupid:message:spacer:spent',
       total: Infinity,

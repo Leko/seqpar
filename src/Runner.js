@@ -22,7 +22,7 @@ export default class Runner {
       const Reporter = getReporter(type)
       return new Reporter(this.config)
     })
-    const bars = times(this.config.concurrency, () => new ProgressBar(this.config))
+    const bars = times(this.config.concurrency, () => new ProgressBar())
     const bar = new ProgressBarManager(bars)
     const pool = new WorkerPool(this.config, {
       exec: path.join(__dirname, 'task.js')
