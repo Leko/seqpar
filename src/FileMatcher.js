@@ -18,7 +18,10 @@ export default class FileMatcher {
 
   async match (target: string): Promise<Array<string>> {
     const targetGlob = this.config.recursive ? `${target}/**/*` : target
-    const files = _glob.hasMagic(targetGlob) ? await glob(targetGlob) : (await readDir(targetGlob)).map(f => path.join(target, f))
+    const files: Array<string> = _glob.hasMagic(targetGlob) ? await glob(targetGlob) : (await readDir(targetGlob)).map(f => path.join(target, f))
+    if (files.length === 0) {
+      throw new Error(`'${target}' is not found`)
+    }
 
     const matched: Array<string> = []
     for (let file of files) {
