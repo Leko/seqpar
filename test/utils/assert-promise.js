@@ -20,3 +20,12 @@ export const assertRejects = async (fn, assertion): Promise<void> => {
     }
   }
 }
+
+export const assertDontRejects = async (fn, assertion): Promise<void> => {
+  try {
+    await fn()
+    assert.ok(true)
+  } catch (error) {
+    assert.ifError(error)
+  }
+}
