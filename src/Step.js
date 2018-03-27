@@ -20,3 +20,5 @@ export default class Step {
     this.files = files
   }
 }
+
+export const createStepID = (id: string): StepID => id

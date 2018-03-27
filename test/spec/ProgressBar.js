@@ -2,7 +2,7 @@
 import assert from 'assert'
 import sinon from 'sinon'
 import { describe, it } from 'mocha'
-import Step, { type StepID } from '../../src/Step'
+import Step, { type StepID, createStepID } from '../../src/Step'
 import { progress } from '../../src/Message'
 import ProgressBar from '../../src/ProgressBar'
 
@@ -16,7 +16,7 @@ describe('ProgressBar', () => {
   describe('display', () => {
     it('display line length same as terminal width', () => {
       const progressBar = new ProgressBar()
-      const stepId: StepID = 1
+      const stepId: StepID = createStepID('1')
       const step = new Step(stepId, [])
       const message = progress({ workerId: 0, log: 'test', spent: 1200 })
       const stub = sinon.stub(progressBar.bar, 'update')
