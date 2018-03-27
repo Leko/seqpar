@@ -49,6 +49,7 @@
     "lodash": "^4.17.5",
     "ora": "^2.0.0",
     "string-width": "^2.1.1",
+    "util.promisify": "^1.0.0",
     "yargs": "^11.0.0"
   },
   "yargs": {
