@@ -1,7 +1,7 @@
 // @flow
 import fs from 'fs'
 import path from 'path'
-import promisify from 'util.promisify'
+import { promisify } from 'es6-promisify'
 import _glob from 'glob'
 import type Config from './Config'
 
