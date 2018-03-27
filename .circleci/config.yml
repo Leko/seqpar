@@ -15,16 +15,16 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - run: 'echo "NODE_VERSION=$(node -v)" >> $BASH_ENV'
+      - run: 'echo "NODE_VERSION=$(node -v)" >> .NODE_VERSION.txt'
       - restore_cache:
           keys:
-          - v1-{{ .Environment.NODE_VERSION }}dependencies-{{ checksum "package.json" }}
-          - v1-{{ .Environment.NODE_VERSION }}dependencies-
+          - v1-{{ checksum ".NODE_VERSION.txt" }}-dependencies-{{ checksum "package.json" }}
+          - v1-{{ checksum ".NODE_VERSION.txt" }}-dependencies-
       - run: npm install
       - save_cache:
           paths:
             - node_modules
-          key: v1-{{ .Environment.NODE_VERSION }}dependencies-{{ checksum "package.json" }}
+          key: v1-{{ checksum ".NODE_VERSION.txt" }}-dependencies-{{ checksum "package.json" }}
       - run: npm run lint
       - run: npm run flow
       - run: npm test
