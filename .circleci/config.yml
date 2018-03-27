@@ -33,23 +33,23 @@ jobs:
     <<: *base
     docker:
       - image: node:4
-        environment:
-          TEST_NODE_TAG: '4'
+    environment:
+      TEST_NODE_TAG: '4'
   node-v6:
     <<: *base
     docker:
       - image: node:6
-        environment:
-          TEST_NODE_TAG: '6'
+    environment:
+      TEST_NODE_TAG: '6'
   node-v8:
     <<: *base
     docker:
       - image: node:8
-        environment:
-          TEST_NODE_TAG: '8'
+    environment:
+      TEST_NODE_TAG: '8'
   node-latest:
     <<: *base
     docker:
       - image: node:latest
-        environment:
-          TEST_NODE_TAG: 'latest'
+    environment:
+      TEST_NODE_TAG: 'latest'
