@@ -1,4 +1,6 @@
 # seqpar
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Leko/seqpar.svg)](https://greenkeeper.io/)
 [![npm](https://img.shields.io/npm/v/seqpar.svg)](https://www.npmjs.com/package/seqpar)
 [![GitHub license](https://img.shields.io/github/license/Leko/seqpar.svg)](https://github.com/Leko/seqpar/blob/master/LICENSE)
 [![CircleCI](https://circleci.com/gh/Leko/seqpar/tree/master.svg?style=svg)](https://circleci.com/gh/Leko/seqpar/tree/master)
