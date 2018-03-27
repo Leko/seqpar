@@ -1,0 +1,81 @@
+{
+  "name": "seqpar",
+  "version": "1.0.0",
+  "description": "seqpar is a batch executor run in sequential & parallel",
+  "main": "index.js",
+  "bin": {
+    "seqpar": "dist/cli.js"
+  },
+  "files": [
+    "package.json",
+    "package-lock.json",
+    "README.md",
+    "LICENSE",
+    "dist"
+  ],
+  "scripts": {
+    "prepare": "npm run build",
+    "lint": "eslint --cache .",
+    "flow": "flow --show-all-errors",
+    "test": "NODE_ENV=test nyc mocha --require @babel/register --recursive test/spec",
+    "build": "babel src --out-dir dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Leko/seqpar.git"
+  },
+  "keywords": [
+    "executable",
+    "batch",
+    "exec",
+    "sequential",
+    "parallel",
+    "file",
+    "js",
+    "node"
+  ],
+  "author": "Leko <leko.noor@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Leko/seqpar/issues"
+  },
+  "homepage": "https://github.com/Leko/seqpar",
+  "dependencies": {
+    "ascii-progress": "^1.0.5",
+    "cli-truncate": "^1.1.0",
+    "es6-promisify": "^6.0.0",
+    "figures": "^2.0.0",
+    "glob": "^7.1.2",
+    "inquirer": "^5.1.0",
+    "lodash": "^4.17.5",
+    "ora": "^2.0.0",
+    "string-width": "^2.1.1",
+    "yargs": "^11.0.0"
+  },
+  "yargs": {
+    "parse-numbers": true,
+    "boolean-negation": true
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/node": "^7.0.0-beta.40",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "@babel/preset-flow": "^7.0.0-beta.40",
+    "@babel/register": "^7.0.0-beta.40",
+    "babel-eslint": "^8.2.2",
+    "eslint": "^4.18.2",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-flowtype": "^2.46.1",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "flow-bin": "^0.67.1",
+    "mocha": "^5.0.4",
+    "mock-fs": "^4.4.2",
+    "nyc": "^11.4.1",
+    "sinon": "^4.4.8"
+  }
+}
