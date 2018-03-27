@@ -1,0 +1,13 @@
+{
+  "cache": true,
+  "all": true,
+  "exclude": [
+    "dist/**/*",
+    "test/**/*",
+    "coverage"
+  ],
+  "reporter": [
+    "lcov",
+    "text"
+  ]
+}
