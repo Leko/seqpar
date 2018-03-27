@@ -17,30 +17,39 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+          - v1-{{ .Environment.TEST_NODE_TAG }}dependencies-{{ checksum "package.json" }}
+          - v1-{{ .Environment.TEST_NODE_TAG }}dependencies-
       - run: npm install
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-{{ .Environment.TEST_NODE_TAG }}dependencies-{{ checksum "package.json" }}
       - run: npm run lint
       - run: npm run flow
       - run: npm test
+      - run: bash <(curl -s https://codecov.io/bash)
 
   node-v4:
     <<: *base
     docker:
       - image: node:4
+        environment:
+          TEST_NODE_TAG: '4'
   node-v6:
     <<: *base
     docker:
       - image: node:6
+        environment:
+          TEST_NODE_TAG: '6'
   node-v8:
     <<: *base
     docker:
       - image: node:8
+        environment:
+          TEST_NODE_TAG: '8'
   node-latest:
     <<: *base
     docker:
       - image: node:latest
+        environment:
+          TEST_NODE_TAG: 'latest'
