@@ -1,6 +1,5 @@
 // @flow
 import assert from 'assert'
-import sinon from 'sinon'
 import { describe, it, before, after } from 'mocha'
 import mockFS from 'mock-fs'
 import Scenario from '../../src/Scenario'

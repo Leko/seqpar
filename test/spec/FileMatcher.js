@@ -53,7 +53,7 @@ describe('FileMatcher', () => {
       it('must throws Error when directory not exists', async () => {
         const config = getConfig({ recursive: false })
         const matcher = new FileMatcher(config)
-        await assertRejects(() => matcher.match('not-exists-dir/**/*'), /'not-exists-dir\/\*\*\/\*\' is not found/)
+        await assertRejects(() => matcher.match('not-exists-dir/**/*'), /'not-exists-dir\/\*\*\/\*' is not found/)
       })
     })
     describe('recursive', () => {

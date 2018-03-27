@@ -1,5 +1,5 @@
 // @flow
-import assert, { deepStrictEqual } from 'assert'
+import assert from 'assert'
 import EventEmitter from 'events'
 import sinon from 'sinon'
 import { describe, it } from 'mocha'
