@@ -1,11 +1,11 @@
 // @flow
 
-export type RuntimeProps = string
+export type RuntimeProps = string;
 
 export default class Runtime {
-  executable: string
+  executable: string;
 
-  constructor (executable: RuntimeProps) {
-    this.executable = executable
+  constructor(executable: RuntimeProps) {
+    this.executable = executable;
   }
 }
