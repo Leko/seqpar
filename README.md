@@ -16,7 +16,7 @@ npm i -g seqpar
 ```
 
 ### Requirement
-- Node.js 4+
+- Node.js 6+
 
 ## Defint first batch file
 All batch files are named in `{GROUP}_name(.{ext})` (e.g. `000_init.js`, `01_lint.sh`, `999_failover`).
