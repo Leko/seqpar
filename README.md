@@ -1,9 +1,10 @@
 # seqpar
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/Leko/seqpar.svg)](https://greenkeeper.io/)
 [![npm](https://img.shields.io/npm/v/seqpar.svg)](https://www.npmjs.com/package/seqpar)
 [![GitHub license](https://img.shields.io/github/license/Leko/seqpar.svg)](https://github.com/Leko/seqpar/blob/master/LICENSE)
 [![CircleCI](https://circleci.com/gh/Leko/seqpar/tree/master.svg?style=svg)](https://circleci.com/gh/Leko/seqpar/tree/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/vd7j3bojbuyqjh6c/branch/master?svg=true)](https://ci.appveyor.com/project/Leko/seqpar/branch/master)
+[![Greenkeeper badge](https://badges.greenkeeper.io/Leko/seqpar.svg)](https://greenkeeper.io/)
 
 seqpar is a batch executor run in sequential &amp; parallel.  
 It's easy to create efficient build process.
@@ -11,14 +12,17 @@ It's easy to create efficient build process.
 ![seqpar_beautify](https://user-images.githubusercontent.com/1424963/37290004-8183a70e-264e-11e8-9a00-e723715a6e60.gif)
 
 ## Install
+
 ```
 npm i -g seqpar
 ```
 
 ### Requirement
-- Node.js 6+
+
+* Node.js 6+
 
 ## Defint first batch file
+
 All batch files are named in `{GROUP}_name(.{ext})` (e.g. `000_init.js`, `01_lint.sh`, `999_failover`).
 
 ```sh
@@ -28,10 +32,11 @@ echo 'Hello, seqpar!'
 ```
 
 ```js
-console.log('Hello, seqpar!')
+console.log("Hello, seqpar!");
 ```
 
 ### Executable order and parallelism
+
 Same `GROUP` run in parallel, different group run in sequential.
 
 ```
@@ -48,6 +53,7 @@ Same `GROUP` run in parallel, different group run in sequential.
 ```
 
 ## Usage
+
 ```
 seqpar [DIRECTORY]
 
@@ -74,9 +80,10 @@ For more information, find our manual at https://github.com/Leko/seqpar
 ```
 
 ## Contribution
+
 seqpar welcomes all contributions from anyone.
 
-1. Fork it
-1. Run `npm install`
-1. Commit your changes
-1. Send pull request to `master` branch
+1.  Fork it
+1.  Run `npm install`
+1.  Commit your changes
+1.  Send pull request to `master` branch
