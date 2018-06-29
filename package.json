@@ -52,7 +52,7 @@
     "lodash": "^4.17.5",
     "ora": "^2.0.0",
     "string-width": "^2.1.1",
-    "yargs": "^11.0.0"
+    "yargs": "^12.0.1"
   },
   "yargs": {
     "parse-numbers": true,
