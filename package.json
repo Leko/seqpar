@@ -48,7 +48,7 @@
     "es6-promisify": "^6.0.0",
     "figures": "^2.0.0",
     "glob": "^7.1.2",
-    "inquirer": "^6.0.0",
+    "inquirer": "^6.4.0",
     "lodash": "^4.17.5",
     "ora": "^3.0.0",
     "string-width": "^3.0.0",
