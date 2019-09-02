@@ -83,7 +83,7 @@
     "nyc": "^14.0.0",
     "prettier": "^1.12.1",
     "pretty-quick": "^1.5.1",
-    "sinon": "^6.3.4"
+    "sinon": "^7.4.2"
   },
   "snyk": true
 }
