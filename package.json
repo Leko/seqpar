@@ -69,7 +69,7 @@
     "@babel/register": "^7.0.0-beta.40",
     "babel-eslint": "^9.0.0",
     "eslint": "^4.18.2",
-    "eslint-config-prettier": "^3.0.0",
+    "eslint-config-prettier": "^6.3.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-flowtype": "^3.0.0",
     "eslint-plugin-import": "^2.9.0",
