@@ -60,13 +60,13 @@
     "boolean-negation": true
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0-beta.40",
-    "@babel/node": "^7.0.0-beta.40",
+    "@babel/node": "^7.0.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.40",
     "@babel/preset-env": "^7.0.0-beta.40",
     "@babel/preset-flow": "^7.0.0-beta.40",
-    "@babel/register": "^7.0.0-beta.40",
+    "@babel/register": "^7.7.0",
     "babel-eslint": "^9.0.0",
     "eslint": "^4.18.2",
     "eslint-config-prettier": "^3.0.0",
@@ -80,7 +80,7 @@
     "husky": "^1.0.0",
     "mocha": "^6.0.0",
     "mock-fs": "^4.4.2",
-    "nyc": "^14.0.0",
+    "nyc": "^15.0.0",
     "prettier": "^1.12.1",
     "pretty-quick": "^1.5.1",
     "sinon": "^6.3.4"
